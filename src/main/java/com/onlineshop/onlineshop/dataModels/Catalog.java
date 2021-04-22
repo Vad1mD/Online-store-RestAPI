@@ -1,7 +1,10 @@
-package com.onlineshop.onlineshop.catalog;
+package com.onlineshop.onlineshop.dataModels;
+
+import com.sun.istack.NotNull;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.List;
 
 @Entity
 @Table(name="catalogs")
@@ -11,17 +14,19 @@ public class Catalog implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
+    @NotNull
     @Column(name="name")
     private String name;
 
-    @Column(name="ownerId")
-    private long ownerId;
+    @OneToMany(targetEntity = Item.class, cascade = CascadeType.ALL)
+    @JoinColumn(name="catalog_id", referencedColumnName = "id")
+    private List<Item> items;
 
     public Catalog(){}
 
-    public Catalog(String name, long ownerId) {
+    public Catalog(String name,  List<Item> items) {
         this.name = name;
-        this.ownerId=ownerId;
+        this.items=items;
     }
 
     public String getName() {
@@ -32,17 +37,15 @@ public class Catalog implements Serializable {
         this.name = name;
     }
 
-    public long getOwnerId() { return ownerId; }
-
-    public void setOwnerId(long ownerId) {
-        this.ownerId = ownerId;
-    }
-
     public long getId() {
         return id;
     }
 
-    public void setId(long id) {
-        this.id = id;
+    public List<Item> getItems() {
+        return items;
+    }
+
+    public void setItems(List<Item> items) {
+        this.items = items;
     }
 }

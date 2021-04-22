@@ -1,4 +1,4 @@
-package com.onlineshop.onlineshop.item;
+package com.onlineshop.onlineshop.dataModels;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -20,17 +20,22 @@ public class Item implements Serializable {
     @Column(name="amount")
     private int amount;
 
-    @Column(name="catalogName")
-    private String catalogName;
+    @Column(name="catalog_id")
+    private Long catalog_id;
 
     public Item(){}
 
-    public Item(String name, float price, int amount,String catalogName) {
+    public Item(String name, float price, int amount, Long catalog_id) {
         this.name = name;
         this.price = price;
         this.amount = amount;
-        this.catalogName = catalogName;
+        this.catalog_id=catalog_id;
+    }
 
+
+
+    public Item(String name, float price, int amount){
+        this(name,price,amount,null);
     }
 
     public String getName() {
@@ -61,11 +66,11 @@ public class Item implements Serializable {
         return id;
     }
 
-    public String getCatalogName() {
-        return catalogName;
+    public Long getCatalog_id() {
+        return catalog_id;
     }
 
-    public void setCatalogName(String catalogName) {
-        this.catalogName = catalogName;
+    public void setCatalog_id(Long catalog_id) {
+        this.catalog_id = catalog_id;
     }
 }
