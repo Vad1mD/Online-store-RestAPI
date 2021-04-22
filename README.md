@@ -4,7 +4,7 @@ Restful service simulating online store
 The service simulates a store in a Mall shopping center.
 The Store has **Catalogs** which contain **Items**.
 
-The API has 3 table 
+The API has 3 table - I've used Postgres and configuration can be found in application.properties
 - users - containing the users in the mall - both owners and customers (id,name,role,payment_method)
 - item - contain the items in the store (id,name,price,amount,catalog_id)
 - catalog - contains info regarding hte catalog (id, name)
